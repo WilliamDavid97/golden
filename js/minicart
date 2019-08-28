@@ -1,0 +1,17 @@
+<form method="post" class="<% if (!hasItems) { %>minicart-empty<% } %>" action="<%= config.action %>" target="<%= config.target %>">
+<button type="button" class="minicart-closer">&times;</button>
+<ul>        
+<% for (var i= 0, idx = i + 1, len = items.length; i < len; i++, idx++) { %> 
+   <li class="minicart-item">
+              
+    <div class="minicart-details-name">   
+                 <a class="minicart-name" href="<%= items[i].get("href") %>">
+                 <%= items[i].get("item_name") %></a>
+                                 <ul class="minicart-attributes">                    <% if (items[i].get("item_number")) { %>                   
+                                  <li>                        <%= items[i].get("item_number") %>                       
+                                   <input type="hidden" name="item_number_<%= idx %>" value="<%= items[i].get("item_number") %>" />
+                                   </li>
+                                    <% } %> 
+<div class="minicart-details-quantity">               
+ <input class="minicart-quantity" data-minicart-idx="<%= i %>" name="quantity_<%= idx %>" type="text" pattern="[0-9]*" value="<%= items[i].get("quantity") %>" autocomplete="off" /> 
+            </div>
